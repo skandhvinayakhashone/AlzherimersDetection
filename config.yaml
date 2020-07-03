@@ -1,0 +1,182 @@
+data:
+  dataset: {name: back_data_15T, samples: 5843, type: private}
+  datasetLoadOption: batch
+  kfold: 1
+  mapping:
+    Images:
+      options: {Augmentation: false, Height: '56', Normalization: true, Resize: true,
+        Scaling: 1, Width: '56', height_shift_range: 0, horizontal_flip: false, pretrained: None,
+        rotation_range: 0, shear_range: 0, vertical_flip: false, width_shift_range: 0}
+      port: InputPort0
+      shape: ''
+      type: Image
+    Target:
+      options: {}
+      port: OutputPort0
+      shape: ''
+      type: Categorical
+  numPorts: 1
+  samples: {split: 1, test: 0, training: 4674, validation: 1168}
+  shuffle: true
+model:
+  connections:
+  - {source: convolution2d_893, target: convolution2d_894}
+  - {source: activation_238, target: dropout_32}
+  - {source: convolution2d_894, target: convolution2d_895}
+  - {source: maxpooling2d_220, target: convolution2d_893}
+  - {source: batchnormalization_291, target: activation_238}
+  - {source: flatten, target: dense_125}
+  - {source: convolution2d_895, target: convolution2d_896}
+  - {source: Input_0, target: convolution2d_889}
+  - {source: dense_126, target: batchnormalization_291}
+  - {source: convolution2d_896, target: maxpooling2d_221}
+  - {source: convolution2d_889, target: convolution2d_890}
+  - {source: activation_237, target: dense_126}
+  - {source: dropout_32, target: dense_127}
+  - {source: convolution2d_890, target: maxpooling2d_219}
+  - {source: dense_125, target: activation_237}
+  - {source: dense_127, target: activation_239}
+  - {source: maxpooling2d_221, target: flatten}
+  - {source: maxpooling2d_219, target: convolution2d_891}
+  - {source: batchnormalization_290, target: maxpooling2d_220}
+  - {source: activation_239, target: dense_128}
+  - {source: convolution2d_891, target: convolution2d_892}
+  - {source: convolution2d_892, target: batchnormalization_290}
+  - {source: dense_128, target: Output_0}
+  layers:
+  - args: {}
+    class: Input
+    name: Input_0
+    x: 60
+    y: 60
+  - args: {activation: relu, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 64,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_889
+    x: 60
+    y: 180
+  - args: {activation: linear, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 64,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_890
+    x: 60
+    y: 300
+  - args: {dim_ordering: th, strides: '(2, 2)'}
+    class: MaxPooling2D
+    name: maxpooling2d_219
+    x: 60
+    y: 420
+  - args: {activation: relu, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_891
+    x: 60
+    y: 540
+  - args: {activation: linear, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_892
+    x: 60
+    y: 660
+  - args: {}
+    class: BatchNormalization
+    name: batchnormalization_290
+    x: 60
+    y: 780
+  - args: {dim_ordering: th, strides: '(2, 2)'}
+    class: MaxPooling2D
+    name: maxpooling2d_220
+    x: 60
+    y: 900
+  - args: {activation: relu, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_893
+    x: 410
+    y: 60
+  - args: {activation: linear, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_894
+    x: 410
+    y: 180
+  - args: {activation: relu, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_895
+    x: 410
+    y: 300
+  - args: {activation: relu, border_mode: same, dim_ordering: th, nb_col: 2, nb_filter: 32,
+      nb_row: 2}
+    class: Convolution2D
+    name: convolution2d_896
+    x: 410
+    y: 420
+  - args: {dim_ordering: th, strides: '(2, 2)'}
+    class: MaxPooling2D
+    name: maxpooling2d_221
+    x: 410
+    y: 540
+  - args: {}
+    class: Flatten
+    name: flatten
+    x: 410
+    y: 660
+  - args: {activation: linear, output_dim: 2048}
+    class: Dense
+    name: dense_125
+    x: 410
+    y: 780
+  - args: {activation: relu}
+    class: Activation
+    name: activation_237
+    x: 410
+    y: 900
+  - args: {activation: linear, output_dim: 1024}
+    class: Dense
+    name: dense_126
+    x: 760
+    y: 60
+  - args: {}
+    class: BatchNormalization
+    name: batchnormalization_291
+    x: 760
+    y: 180
+  - args: {activation: relu}
+    class: Activation
+    name: activation_238
+    x: 760
+    y: 300
+  - args: {p: 0.4}
+    class: Dropout
+    name: dropout_32
+    x: 760
+    y: 420
+  - args: {activation: linear, output_dim: 1024}
+    class: Dense
+    name: dense_127
+    x: 760
+    y: 540
+  - args: {activation: relu}
+    class: Activation
+    name: activation_239
+    x: 760
+    y: 660
+  - args: {activation: softmax, output_dim: 3}
+    class: Dense
+    name: dense_128
+    x: 760
+    y: 780
+  - args: {}
+    class: Output
+    name: Output_0
+    x: 760
+    y: 900
+params:
+  advance_params: true
+  batch_size: 32
+  is_custom_loss: false
+  loss_func: categorical_crossentropy
+  num_epoch: 10
+  optimizer: {name: Adadelta}
+project: mri_back
