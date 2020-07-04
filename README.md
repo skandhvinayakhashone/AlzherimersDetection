@@ -1,4 +1,4 @@
-# AlzherimersDetection
+# AlzheimersDetection
 A system that detects the presence of Alzheimer's in MRI images
 
 Data set : http://adni.loni.usc.edu/data-samples/access-data/
