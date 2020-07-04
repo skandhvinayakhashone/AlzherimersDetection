@@ -23,4 +23,6 @@ scikit-learn >= 0.21.3
 
 scikit-misc >= 0.1.2
 
+scipy >= 1.4.0
+
 tensorflow >= 1.13.1
